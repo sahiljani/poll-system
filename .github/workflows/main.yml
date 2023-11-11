@@ -60,6 +60,6 @@ jobs:
       with:
         server: ftp.sahiljani.dev
         username: poll-laravel@sahiljani.dev
-        password: %Bx!#k+BBVLo
+        password: Sahil@41212
         server-dir: /
     
