@@ -160,27 +160,42 @@ class PollController extends Controller {
     }
 
     public function vote(Request $request, $unique_identifier) {
-        $ipAddress = $request->getClientIp();
+       
     
 
-        if ($request->cookie('vote') === $unique_identifier) {
-            return redirect()
-                ->back()
-                ->with('error', 'You have already voted in this poll.');
-        }
+        
 
         $poll = Poll::where('unique_identifier', $unique_identifier)->first();
 
-        $ipAddress = $request->ip();
-        $existingVote = IpRecord::where('poll_id', $poll->id)
-            ->where('ip_address', $ipAddress)
-            ->first();
-
-        if ($existingVote) {
-            return redirect()
-                ->back()
-                ->with('error', 'You have already voted in this poll.' );
+        // check if poll Is_IP_validate us 1 then 
+        if ($poll->Is_IP_validate) {
+            $ipAddress = $request->getClientIp();
+            $existingVote = IpRecord::where('poll_id', $poll->id)
+                ->where('ip_address', $ipAddress)
+                ->first();
+    
+            if ($existingVote) {
+                return redirect()
+                    ->back()
+                    ->with('error', 'You have already voted in this poll.' );
+            }
         }
+        
+
+        // check if poll Is_browser_validate us 1 then
+
+        if ($poll->Is_browser_validate) {
+            if ($request->cookie('vote') === $unique_identifier) {
+                return redirect()
+                    ->back()
+                    ->with('error', 'You have already voted in this poll.');
+            }
+        }
+
+      
+
+
+      
 
         if (!$poll) {
             return redirect()
@@ -196,13 +211,15 @@ class PollController extends Controller {
 
         // Increment the vote count for the selected option
         $option->increment('votes');
-
+        if ($poll->Is_IP_validate) {
         // Create a new IP record
         IpRecord::create([
             'poll_id' => $poll->id,
             'ip_address' => $ipAddress,
         ]);
+    }
 
+    
         // Set the 'vote' cookie with the value of $unique_identifier and no expiration
         $response = redirect()
             ->route('show-vote', $unique_identifier)
