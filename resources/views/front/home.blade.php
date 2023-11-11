@@ -45,9 +45,9 @@
         <div class="row">
             <div class="col-md-5 my-3 d-flex flex-column justify-content-center">
                 <div class="text-center">
-                    <h1 class="pollhdng text-center text-md-start fw-bold">Create Polls on RisingPoll like never before</h1>
+                    <h1 class="pollhdng text-center text-md-start fw-bold">Create Polls on Today's Poll like never before</h1>
                     <p class="pollpara fs-5 text-center text-md-start my-3">
-                        Now get everyone’s opinion faster than ever by creating a poll only on RisingPoll.
+                        Now get everyone’s opinion faster than ever by creating a poll only on Today's Poll.
                     </p>
                 </div>
                 <div class="row text-center text-md-start">
@@ -74,7 +74,7 @@
 
     <div class="py-5 threecolsection">
         {!! $HomePageAds1 !!}
-        <h1 class="text-center">What you can do with RisingPoll?</h1>
+        <h1 class="text-center">What you can do with Today's Poll?</h1>
         <div class="container">
             <div class="row my-5">
 
@@ -208,8 +208,8 @@
 
 
         <div class="row pt-5">
-            <h1 class="text-center">How to create a Poll on RisingPoll?</h1>
-            <p class="text-center">Simplicity is the key feature of RisingPoll, but we also offer advanced features for
+            <h1 class="text-center">How to create a Poll on Today's Poll?</h1>
+            <p class="text-center">Simplicity is the key feature of Today's Poll, but we also offer advanced features for
                 users so they can customized polls for different purposes.</p>
             <div class="col-md-6">
                 <div class="rel d-flex">
@@ -219,7 +219,7 @@
                     <div class="arrow-right my-5"></div>
                 </div>
                 <p>
-                    You can easily create your own poll on RisingPoll without any registration. But if you want to change
+                    You can easily create your own poll on Today's Poll without any registration. But if you want to change
                     them in the future, we recommend registering with us.
                 </p>
             </div>
@@ -244,7 +244,7 @@
                     </div>
                 </div>
                 <p>
-                    After you've created your poll on RisingPoll and shared it with everyone, you'll need to wait for
+                    After you've created your poll on Today's Poll and shared it with everyone, you'll need to wait for
                     everyone to respond. If you are a registered user, you can view the result of your created polls at any
                     time, and otherwise, you can view it only on the device from which it was created.
                 </p>
@@ -271,13 +271,13 @@
                                     <button class="accordion-button bg-primary text-white" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                                         aria-controls="collapseOne">
-                                        Do I need to be a registered user to create a poll on RisingPoll?
+                                        Do I need to be a registered user to create a poll on Today's Poll?
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        No, you can also create polls on RisingPoll without registering,
+                                        No, you can also create polls on Today's Poll without registering,
                                         but you will only be able to view your results on
                                         the device you created the poll from, nor will you
                                         be able to edit or delete that poll. But if you are
@@ -297,7 +297,7 @@
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Yes, creating polls on RisingPoll is free of cost. We provide our users with all the
+                                        Yes, creating polls on Today's Poll is free of cost. We provide our users with all the
                                         services on our platform for free. We are financed exclusively by advertising.
                                     </div>
                                 </div>
@@ -308,13 +308,13 @@
                                     <button class="accordion-button collapsed bg-primary text-white" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false"
                                         aria-controls="collapsefour">
-                                        What is RisingPoll?
+                                        What is Today's Poll?
                                     </button>
                                 </h2>
                                 <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        RisingPoll is an online platform/website that allows users to create polls and share
+                                        Today's Poll is an online platform/website that allows users to create polls and share
                                         them on multiple social media platforms to know public opinion. You can use it to
                                         play fun quizzes with friends or do some surveys in the office.
                                     </div>
@@ -332,7 +332,7 @@
                                 <div id="collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Yes, As Long as you are a registered user on RisingPoll you can delete/edit any poll
+                                        Yes, As Long as you are a registered user on Today's Poll you can delete/edit any poll
                                         created by you. If you have created the poll anonymously, you can send us the URL
                                         and screenshot of the poll through our contact us page. Our team will have proper
                                         validation and get the poll deleted post verification. It may take up to 7 days in
@@ -374,9 +374,9 @@
             <div class="row">
 
                 <div class="col-md-5">
-                    <h1 class="contacthdng">Let's Connect <br>with RisingPoll</h1>
+                    <h1 class="contacthdng">Let's Connect <br>with Today's Poll</h1>
                     <p class="contactpara fs-5">
-                        Discuss your query with RisingPoll, It will help us to build a strong platform.
+                        Discuss your query with Today's Poll, It will help us to build a strong platform.
                     </p>
                 </div>
 

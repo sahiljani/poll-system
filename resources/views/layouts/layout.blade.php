@@ -145,7 +145,7 @@
         </div>
 
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            <a class="text-white" href="https://risingpoll.com/">©Today's Poll. All rights reserved.</a>
+            <a class="text-white" href="https://Today's Poll.com/">©Today's Poll. All rights reserved.</a>
         </div>
     </footer>
 
