@@ -24,16 +24,16 @@ class PollController extends Controller {
             'options.*' => 'required|string',
             'customShareField' => 'nullable|string',
         ];
-    
+
         $request->validate($rules);
-    
+
         // Handle image upload
         if ($request->hasFile('head_img')) {
             $imagePath = $request->file('head_img')->store('poll_images', 'public');
         } else {
             $imagePath = null;
         }
-    
+
         // Determine checkbox values
         $oneVotePerIp = $request->has('oneVotePerIp') ? 1 : 0;
         $votePerBrowser = $request->has('votePerBrowser') ? 1 : 0;
@@ -41,7 +41,7 @@ class PollController extends Controller {
         // $customShareField = $customShare ? $request->input('customShareField') : null;
         $customShareField = $customShare ? nl2br($request->input('customShareField')) : null;
 
-    
+
         // Create a new poll
         $poll = new Poll([
             'question' => $request->input('title'),
@@ -51,9 +51,9 @@ class PollController extends Controller {
             'Is_browser_validate' => $votePerBrowser,
             'share_message' => $customShareField,
         ]);
-    
+
         $poll->save();
-    
+
         // Attach options to the poll
         $options = $request->input('options');
         foreach ($options as $optionText) {
@@ -61,29 +61,29 @@ class PollController extends Controller {
                 'poll_id' => $poll->id, // Assign the poll_id here
                 'option_text' => $optionText,
             ]);
-    
+
             $option->save();
         }
-    
+
         // Create an IP record
         $ipAddress = $request->ip();
         if ($oneVotePerIp) {
             $existingVote = IpRecord::where('poll_id', $poll->id)
                 ->where('ip_address', $ipAddress)
                 ->first();
-    
+
             if ($existingVote) {
                 return redirect()->back()->with('error', 'You have already voted in this poll.');
             }
         }
-    
+
         // Handle custom share message logic if needed
-    
+
         return redirect()
             ->route('share-poll', ['unique_identifier' => $poll->unique_identifier])
             ->cookie('unique_identifier', $poll->unique_identifier);
     }
-    
+
     public function share($unique_identifier) {
         $poll = Poll::where('unique_identifier', $unique_identifier)->first();
 
@@ -160,10 +160,10 @@ class PollController extends Controller {
     }
 
     public function vote(Request $request, $unique_identifier) {
-       
-    
 
-        
+
+
+
 
         $poll = Poll::where('unique_identifier', $unique_identifier)->first();
 
@@ -173,14 +173,14 @@ class PollController extends Controller {
             $existingVote = IpRecord::where('poll_id', $poll->id)
                 ->where('ip_address', $ipAddress)
                 ->first();
-    
+
             if ($existingVote) {
                 return redirect()
                     ->back()
-                    ->with('error', 'You have already voted in this poll.' );
+                    ->with('error', 'You have already voted in this poll.');
             }
         }
-        
+
 
         // check if poll Is_browser_validate us 1 then
 
@@ -192,10 +192,10 @@ class PollController extends Controller {
             }
         }
 
-      
 
 
-      
+
+
 
         if (!$poll) {
             return redirect()
@@ -204,24 +204,22 @@ class PollController extends Controller {
         }
 
         $selectedOptionId = $request->input('option');
-      
+
         $option = PollOption::find($selectedOptionId);
-        
-   
+
+
 
         // Increment the vote count for the selected option
         $option->increment('votes');
         if ($poll->Is_IP_validate) {
-        // Create a new IP record
-        IpRecord::create([
-            'poll_id' => $poll->id,
-            'ip_address' => $ipAddress,
-        ]);
+            // Create a new IP record
+            IpRecord::create([
+                'poll_id' => $poll->id,
+                'ip_address' => $ipAddress,
+            ]);
+        }
 
-        
-    }
 
-    
         // Set the 'vote' cookie with the value of $unique_identifier and no expiration
         $response = redirect()
             ->route('show-vote', $unique_identifier)
@@ -255,8 +253,8 @@ class PollController extends Controller {
         return view('admin.list');
     }
 
-    public function logvote(Request $request, $uniqueIdentifier){
-       
+    public function logvote(Request $request, $uniqueIdentifier) {
+
         $reportInput = $request->input('report');
         Log::channel('report')->info("Report input: $reportInput");
         $pollUrl = route('show-poll', ['unique_identifier' => $uniqueIdentifier]);
@@ -265,12 +263,44 @@ class PollController extends Controller {
         Log::channel('report')->info("poll Url: $pollUrl ");
 
 
-    Log::channel('report')->info("-------------------------");
+        Log::channel('report')->info("-------------------------");
 
         // Your existing code or logic here...
-    
+
         // For example, if you want to return a response
         return response()->json(['message' => 'Vote logged successfully']);
-    
-}
+    }
+
+    public function editPollViews(Request $request) {
+        try {
+            // Retrieve the pollId from the request
+            $pollId = $request->input('pollId');
+
+            // newViews - convert to integer
+        
+            $newViews = $request->input('newViews');
+
+            // Find the poll by ID
+            $poll = Poll::find($pollId);
+
+            // If the poll is found, update the views
+            if ($poll) {
+                // Increment the views count (you can customize this logic based on your requirements)
+            
+                $poll->views += (int)$newViews;
+
+                // Save the updated poll
+                $poll->save();
+
+                // Return a response indicating success with the updated views count
+                return response()->json(['success' => true, 'newViews' => $poll->views]);
+            } else {
+                // Return a response indicating failure if the poll is not found
+                return response()->json(['success' => false, 'message' => 'Poll not found.']);
+            }
+        } catch (\Exception $e) {
+            // Return a response indicating failure if an exception occurs
+            return response()->json(['success' => false, 'message' => 'Error updating poll views.']);
+        }
+    }
 }

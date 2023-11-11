@@ -34,6 +34,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::get('/settings', [SettingsController::class, 'show'])->name('settings.show');
 Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
+Route::post('/edit-poll-views', [PollController::class, 'editPollViews'])->name('edit-poll-views');
+
 });
 
 
