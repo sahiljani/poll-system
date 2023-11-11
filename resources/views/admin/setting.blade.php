@@ -45,12 +45,12 @@
                             </div>
 
                             <div class="mb-4">
-                                <label for="ShowPageAds{{ $i }}" class="block text-gray-600 text-sm font-semibold mb-2">Show Page Ads {{ $i }}:</label>
+                                <label for="ShowPageAds{{ $i }}" class="block text-gray-600 text-sm font-semibold mb-2">Vote Page Ads {{ $i }}:</label>
                                 <textarea id="ShowPageAds{{ $i }}" name="ShowPageAds{{ $i }}" class="w-full border rounded-lg p-2">{{ $settings->{"ShowPageAds{$i}"} }}</textarea>
                             </div>
 
                             <div class="mb-4">
-                                <label for="showVotePageAds{{ $i }}" class="block text-gray-600 text-sm font-semibold mb-2">Show Vote Page Ads {{ $i }}:</label>
+                                <label for="showVotePageAds{{ $i }}" class="block text-gray-600 text-sm font-semibold mb-2">Result Page Ads {{ $i }}:</label>
                                 <textarea id="showVotePageAds{{ $i }}" name="showVotePageAds{{ $i }}" class="w-full border rounded-lg p-2">{{ $settings->{"showVotePageAds{$i}"} }}</textarea>
                             </div>
                         @endfor
