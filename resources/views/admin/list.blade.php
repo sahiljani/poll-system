@@ -201,7 +201,7 @@
                     console.log(currentPollId);
                     const viewsCell = document.querySelector(`#pollsTable tr[data-poll-id="${currentPollId}"] td:nth-child(4)`);
                     if (result.success) {
-                     
+                        location.reload();
                         closeEditViewsModal();
                     } else {
                         console.error("Error updating poll views.");
