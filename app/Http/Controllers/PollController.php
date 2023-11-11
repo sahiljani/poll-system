@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\IpRecord;
 use App\Models\Poll;
 use App\Models\PollOption;
+use GuzzleHttp\Handler\StreamHandler;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 
 class PollController extends Controller {
     //
@@ -158,7 +161,7 @@ class PollController extends Controller {
 
     public function vote(Request $request, $unique_identifier) {
         $ipAddress = $request->getClientIp();
-
+    
 
         if ($request->cookie('vote') === $unique_identifier) {
             return redirect()
@@ -186,14 +189,10 @@ class PollController extends Controller {
         }
 
         $selectedOptionId = $request->input('option');
-
+      
         $option = PollOption::find($selectedOptionId);
-
-        if (!$option || $option->poll_id !== $poll->id) {
-            return redirect()
-                ->route('share-poll', $unique_identifier)
-                ->with('error', 'Invalid option selected');
-        }
+        
+   
 
         // Increment the vote count for the selected option
         $option->increment('votes');
@@ -236,4 +235,23 @@ class PollController extends Controller {
     public function listPolls() {
         return view('admin.list');
     }
+
+    public function logvote(Request $request, $uniqueIdentifier){
+       
+        $reportInput = $request->input('report');
+        Log::channel('report')->info("Report input: $reportInput");
+        $pollUrl = route('show-poll', ['unique_identifier' => $uniqueIdentifier]);
+
+        // Log the unique identifier
+        Log::channel('report')->info("poll Url: $pollUrl ");
+
+
+    Log::channel('report')->info("-------------------------");
+
+        // Your existing code or logic here...
+    
+        // For example, if you want to return a response
+        return response()->json(['message' => 'Vote logged successfully']);
+    
+}
 }

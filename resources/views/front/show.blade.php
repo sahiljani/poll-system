@@ -1,4 +1,5 @@
 @extends('layouts.layout')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 @section('content')
     <style>
@@ -60,6 +61,11 @@
                 width: 50% !important;
             }
         }
+        label{
+            display: inline-block;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
         h2, p{
             text-align: left;
         }
@@ -119,6 +125,53 @@
         {!! $ShowPageAds2 !!}
     </div>
 
+    <div class="buttons my-5">
+        <a href="{{ route('create-poll') }}" class="btn btn-primary py-3 px-5">यहाँ से अपना पोल बनाए</a>
+        
+        <button type="button" class="btn btn-danger py-3 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>
+    </div>
+    <!-- Button trigger modal -->
+    
+  
+  <!-- Modal -->
+  <form id="pollForm" action="{{ route('logvote', $poll->unique_identifier) }}" method="POST">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      
+        <div id="report_body" class="modal-body text-left">
+            <div class="reporthdng d-flex"><input type="radio" value="Sexual content" id="report_1" name="report"><label for="report_1"> Sexual content </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Violent or repulsive content" id="report_2" name="report"><label for="report_2"> Violent or repulsive content </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Hateful or abusive content" id="report_3" name="report"><label for="report_3"> Hateful or abusive content </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Harassment or bullying" id="report_4" name="report"><label for="report_4"> Harassment or bullying </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Harmful or dangerous acts" id="report_5" name="report"><label for="report_5"> Harmful or dangerous acts </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Misinformation" id="report_6" name="report"><label for="report_6"> Misinformation </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Child abuse" id="report_7" name="report"><label for="report_7"> Child abuse </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Promotes terrorism" id="report_8" name="report"><label for="report_8"> Promotes terrorism </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Spam or misleading" id="report_9" name="report"><label for="report_9"> Spam or misleading </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Infringes my rights" id="report_10" name="report"><label for="report_10"> Infringes my rights </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="Captions issue" id="report_11" name="report"><label for="report_11"> Captions issue </label></div>
+            <div class="reporthdng d-flex"><input type="radio" value="None of these are my issue" id="report_12" name="report"><label for="report_12"> None of these are my issue </label></div>
+
+        </div>
+    </form>
+
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-danger">Submit Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+    
 <div class="mt-5">
         <!-- Dynamic Top Polls -->
 <div id="topPolls mt-5">
@@ -233,5 +286,54 @@
 
 
 </div>
+<script>
+     document.getElementById('pollForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
 
+        // Get the selected option
+        var selectedOption = document.querySelector('input[name="report"]:checked');
+
+        if (!selectedOption) {
+            alert('Please select an option');
+            return;
+        }
+
+        var selectedOptionId = selectedOption.value;
+
+        // Make an AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', this.action, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response.message); // Log the response from the server
+                    modalInstance.hide()
+
+                    // Add any additional handling you need
+                } else {
+                    console.error('Error:', xhr.status, xhr.statusText);
+                    // Handle the error
+                }
+            }
+        };
+
+        // Prepare data for the POST request
+        var formData = new FormData(this);
+        formData.append('_token', csrfToken); // Include CSRF token
+
+        formData.append('option', selectedOptionId);
+
+        // Send the request
+        xhr.send(new URLSearchParams(formData));
+    });
+
+    var modalInstance = null;
+var modelElem = document.querySelector('#exampleModal');
+modelElem.addEventListener('shown.bs.modal', function (){
+  modalInstance = bootstrap.Modal.getInstance(modelElem);
+});
+</script>
     @endsection

@@ -58,6 +58,14 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'report' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/report.log'),
+            'level' => 'info',
+        'permission' => 0664, 
+        ],
+    
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

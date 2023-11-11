@@ -47,11 +47,14 @@ Route::get('/share-poll/{unique_identifier}', [PollController::class, 'share'])-
 Route::get('/delete-poll/{unique_identifier}', [PollController::class, 'delete'])->name('delete-poll');
 
 
+
 Route::post('/poll/{unique_identifier}/vote', [PollController::class, 'vote'])->name('vote');
 Route::get('/poll/{unique_identifier}/result', [PollController::class, 'showVote'])->name('show-vote');
 
 Route::get('/poll/{unique_identifier}', [PollController::class, 'show'])->name('show-poll')->middleware('record_poll_view');;
 Route::get('/polls', [PollController::class, 'listPollsWithOptions'])->name('show-poll-Json');
+
+Route::post('/logvote/{uniqueIdentifier}', [PollController::class, 'logvote'])->name('logvote');
 
 
 
