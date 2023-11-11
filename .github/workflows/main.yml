@@ -18,6 +18,10 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
+    - name: db:seed
+      run: php artisan db:seed
+
+
     - name: Cache Clearing
       run: php artisan cache:clear
 
