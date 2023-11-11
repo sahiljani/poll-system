@@ -291,7 +291,7 @@
                                     <button class="accordion-button collapsed bg-primary text-white" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                        Is creating polls on rising poll free of cost?
+                                        Is creating polls on Today's Poll free of cost?
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -326,7 +326,7 @@
                                     <button class="accordion-button collapsed bg-primary text-white" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                        Can I delete/edit a Poll on Rising Poll?
+                                        Can I delete/edit a Poll on Today's Poll?
                                     </button>
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse"
@@ -346,13 +346,13 @@
                                     <button class="accordion-button collapsed bg-primary text-white" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="false"
                                         aria-controls="collapsefive">
-                                        Are the results of Polls created on Rising Poll reliable?
+                                        Are the results of Polls created on Today's Poll reliable?
                                     </button>
                                 </h2>
                                 <div id="collapsefive" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Reliability of polls created on rising poll depends on the parameters chosen at the
+                                        Reliability of polls created on Today's Poll depends on the parameters chosen at the
                                         time of it's creation. The creator of the poll can choose proper parameters to stop
                                         duplicate voting.
                                     </div>

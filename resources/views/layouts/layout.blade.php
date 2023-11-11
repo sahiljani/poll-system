@@ -60,7 +60,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">           
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('home') }}">Company Name</a>
+                <a class="navbar-brand" href="{{ route('home') }}">Today's Poll</a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -123,7 +123,7 @@
             
 
             <section class="mb-4">
-                <p>Gather opinions and insights with Rising Poll - the user-friendly platform for creating and
+                <p>Gather opinions and insights with Today's Poll - the user-friendly platform for creating and
                     participating in engaging polls. Join us today to start polling!</p>
             </section>
 

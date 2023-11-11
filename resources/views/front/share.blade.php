@@ -65,7 +65,7 @@
                     @foreach ($pollOptions as $option)
                         <label class="h5">
                             <input class="form-check-input" type="radio" name="option" id="{{ $option->id }}"
-                                value="{{ $option->id }}" requiredshadow-card w-50 my-4>
+                                value="{{ $option->id }}"  required>
                             <span>{{ $option->option_text }}</span>
                         </label>
                     @endforeach

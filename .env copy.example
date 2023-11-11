@@ -11,9 +11,9 @@ LOG_LEVEL=debug
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=sahilja1_polllaravel
-DB_USERNAME=sahilja1_polllaravel
-DB_PASSWORD=Fy4Dg)jQ_~*]
+DB_DATABASE=sahilja1_larapoll
+DB_USERNAME=sahilja1_larapoll
+DB_PASSWORD=sahilja1_larapoll
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file

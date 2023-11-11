@@ -97,8 +97,8 @@
                 <div style="display: flex; flex-direction: column; text-align: left;" class="mt-5 options text-left">
                     @foreach ($pollOptions as $option)
                         <label class="h5">
-                            <input class="form-check-input" type="radio" name="option" id="{{ $option->id }}"
-                                value="{{ $option->id }}" requiredshadow-card w-50 my-4>
+                            <input class="form-check-input " type="radio" name="option" id="{{ $option->id }}"
+                                value="{{ $option->id }}"  my-4 required>
                             <span>{{ $option->option_text }}</span>
                         </label>
                     @endforeach
