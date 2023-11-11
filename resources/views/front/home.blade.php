@@ -64,7 +64,7 @@
 
 
             <div class="col-md-7">
-                <img src="{{ asset('storage/static/hero.png') }}" class="img-fluid rounded w-75" alt="hero  Image">
+                <img src="{{ asset('storage/static/Group_10.svg') }}" class="img-fluid rounded w-75" alt="hero  Image">
             </div>
         </div>
     </div>
