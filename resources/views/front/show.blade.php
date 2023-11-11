@@ -106,7 +106,10 @@
 
                 <div class="vote-button py-2">
                     <button id="vote" href="" class="btn btn-success btn-lg" type="submit">वोट करे</button>
-                    <button type="button" class="btn btn-danger btn-lg" id="result">रिजल्ट देंखे</button>
+                    <a href="{{ route('show-vote', ['unique_identifier' => $poll->unique_identifier]) }}" 
+                        class="btn btn-danger btn-lg" id="result">
+                       रिजल्ट देंखे
+                    </a>
                 </div>           
             </form>
            
@@ -126,10 +129,11 @@
     </div>
 
     <div class="buttons my-5">
+        
         <a href="{{ route('create-poll') }}" class="btn btn-primary py-3 px-5">यहाँ से अपना पोल बनाए</a>
         
         <button type="button" class="btn btn-danger py-3 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
+           Report
         </button>
     </div>
     <!-- Button trigger modal -->
@@ -141,7 +145,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Report</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
       

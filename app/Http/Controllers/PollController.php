@@ -217,6 +217,8 @@ class PollController extends Controller {
             'poll_id' => $poll->id,
             'ip_address' => $ipAddress,
         ]);
+
+        
     }
 
     

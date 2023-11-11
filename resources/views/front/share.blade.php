@@ -73,8 +73,11 @@
 
                 <div class="vote-button py-2 mt-3">
                     <button id="vote" href="" class="btn btn-success btn-lg" type="submit">Vote</button>
-                    <button type="button" class="btn btn-danger btn-lg" id="result">View
-                        Results</button>
+                  
+                    <a href="{{ route('show-vote', ['unique_identifier' => $poll->unique_identifier]) }}" 
+                        class="btn btn-danger btn-lg" id="result">
+                        View Results
+                    </a>
                 </div>
             </form>
         </div>

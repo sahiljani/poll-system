@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+<title>Create a Poll - Free Poll Maker</title>
 <style>
     div.upload {}
 

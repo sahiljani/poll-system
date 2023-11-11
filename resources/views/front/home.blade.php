@@ -44,11 +44,13 @@
     <div class="container py-3">
         <div class="row">
             <div class="col-md-5 my-3 d-flex flex-column justify-content-center">
-                <h1 class="pollhdng text-center text-md-start fw-bold my-2">Create Polls on RisingPoll like never before</h1>
-                <p class="pollpara fs-5 text-center text-md-start my-2">
-                    Now get everyone’s opinion faster than ever by creating a poll only on RisingPoll.
-                </p>
-                <div class="row my-4 text-center text-md-start">
+                <div class="text-center">
+                    <h1 class="pollhdng text-center text-md-start fw-bold">Create Polls on RisingPoll like never before</h1>
+                    <p class="pollpara fs-5 text-center text-md-start my-3">
+                        Now get everyone’s opinion faster than ever by creating a poll only on RisingPoll.
+                    </p>
+                </div>
+                <div class="row text-center text-md-start">
                     <div class="col-md-6 my-2">
                         <a href="{{ route('create-poll') }}" class="btn btn-lg btn-dark">
                             Create Poll
