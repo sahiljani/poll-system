@@ -59,7 +59,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ftp.sahiljani.dev
-        username: laravelpoll@sahiljani.dev
-        password: P2IXr,3oqP~C
-        server-dir: /public_html/polllaravel/
+        username: poll-laravel@sahiljani.dev
+        password: %Bx!#k+BBVLo
+        server-dir: /
     
