@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PollController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -36,14 +37,24 @@ Route::get('/settings', [SettingsController::class, 'show'])->name('settings.sho
 Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 Route::post('/edit-poll-views', [PollController::class, 'editPollViews'])->name('edit-poll-views');
 
+Route::get('/polls/{poll}/options', [PollController::class, 'showOptions'])->name('admin.polls.options');
+Route::post('/polls/{poll}/options/{option}/edit', [PollController::class, 'editOptionVotes'])->name('admin.polls.options.edit');
+
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+
+
 });
 
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
 Route::get('/create-poll', [PollController::class, 'create'])->name('create-poll');
 Route::post('/create-poll', [PollController::class, 'store'])->name('create-poll-submit');
+
+
 
 Route::get('/share-poll/{unique_identifier}', [PollController::class, 'share'])->name('share-poll');
 Route::get('/delete-poll/{unique_identifier}', [PollController::class, 'delete'])->name('delete-poll');
@@ -57,6 +68,11 @@ Route::get('/poll/{unique_identifier}', [PollController::class, 'show'])->name('
 Route::get('/polls', [PollController::class, 'listPollsWithOptions'])->name('show-poll-Json');
 
 Route::post('/logvote/{uniqueIdentifier}', [PollController::class, 'logvote'])->name('logvote');
+
+
+
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
 
 

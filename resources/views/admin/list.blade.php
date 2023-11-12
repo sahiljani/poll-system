@@ -85,6 +85,15 @@
                     data.forEach(poll => {
                         const row = document.createElement("tr");
 
+
+
+
+                        const viewLink = document.createElement("a");
+                        viewLink.textContent = "View";
+                        viewLink.classList.add("text-blue-600", "mr-5", "hover:text-blue-900");
+                        viewLink.href = "{{ route('admin.polls.options', ['poll' => ':pollId']) }}".replace(':pollId', poll.id);
+
+
                         // Create table cells and populate with data
                         const idCell = document.createElement("td");
                         idCell.textContent = poll.id;
@@ -135,10 +144,14 @@
                                             location.reload();
 
                                         } else {
+                                            location.reload();
+
                                             console.error("Error deleting poll.");
                                         }
                                     })
                                     .catch(error => {
+                                        location.reload();
+
                                         console.error("Error deleting poll: ", error);
                                     });
                             }
@@ -151,6 +164,7 @@
                         row.appendChild(questionCell);
                         row.appendChild(optionsCell);
                         row.appendChild(viewsCell);
+                        row.appendChild(document.createElement("td").appendChild(viewLink));
                         row.appendChild(actionsCell);
 
                         // Append the row to the table body

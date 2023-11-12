@@ -103,26 +103,30 @@ class PollController extends Controller {
             return redirect()->route('show-poll', ['unique_identifier' => $unique_identifier]);
         }
     }
-
     public function delete($unique_identifier) {
         $poll = Poll::where('unique_identifier', $unique_identifier)->first();
-
+    
         if (!$poll) {
             return redirect()
                 ->route('share-poll', $unique_identifier)
                 ->with('error', 'Poll not found');
         }
-
+    
+        // Delete related records in ip_records table
+        IpRecord::where('poll_id', $poll->id)->delete();
+    
         // Delete related poll options
         PollOption::where('poll_id', $poll->id)->delete();
-
+    
         // Delete the poll
         $poll->delete();
-
+    
         return redirect()
             ->route('create-poll')
             ->with('success', 'Poll deleted successfully.');
     }
+
+    
 
     public function show($unique_identifier) {
         // Check if the user has already seen this poll
@@ -302,5 +306,27 @@ class PollController extends Controller {
             // Return a response indicating failure if an exception occurs
             return response()->json(['success' => false, 'message' => 'Error updating poll views.']);
         }
+    }
+
+    public function showOptions(Poll $poll)
+    {
+        $options = $poll->options;
+
+        return view('admin.options', compact('poll', 'options'));
+    }
+
+    
+    public function editOptionVotes(Poll $poll, PollOption $option, Request $request)
+    {
+        $request->validate([
+            'votes' => 'required|integer|min:0',
+        ]);
+
+        $option->update([
+            'votes' => $request->input('votes'),
+        ]);
+
+        return redirect()->route('admin.polls.options', $poll->id)
+            ->with('success', 'Votes for option updated successfully');
     }
 }
