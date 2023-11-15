@@ -4,6 +4,7 @@
 /public/hot
 /vendor
 .env
+*.zip
 .env.backup
 .env.production
 .phpunit.result.cache
